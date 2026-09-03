@@ -1,5 +1,7 @@
-**/dataset/**
-**/dataset/
-dataset/
-__pycache__/
-.venv/
+--extra-index-url https://download.pytorch.org/whl/cpu
+streamlit
+torch
+torchvision
+numpy
+opencv-python-headless
+pillow
