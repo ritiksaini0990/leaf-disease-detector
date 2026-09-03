@@ -158,20 +158,15 @@ disease_info = {
 
 @st.cache_resource
 def load_model():
-
-    model = CornDiseaseAttentionNet(
-        num_classes=len(class_names)
-    ).to(device)
-
-    model.load_state_dict(
-        torch.load(
-            "models/best_corn_attention_model.pth",
-            map_location=device
-        )
-    )
-
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    MODEL_PATH = os.path.join(BASE_DIR, "models", "best_corn_attention_model.pth")
+    
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = CornDiseaseAttentionNet()
+    
+    model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
+    model.to(device)
     model.eval()
-
     return model
 
 
